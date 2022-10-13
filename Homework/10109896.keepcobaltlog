@@ -1,0 +1,25 @@
+Jobid: 10109896
+qsub --mode script -t 60 -q single-gpu -A ALCFAITP -n 1 ./train_resnet34_thetagpu_DAH.sh
+Wed Oct 12 02:46:13 2022 +0000 (UTC) submitted with cwd set to: /lus/swift/home/hornerd/ai-science-training-series/04_modern_neural_networks
+jobid 10109896 submitted from terminal /dev/pts/14
+Wed Oct 12 02:46:34 2022 +0000 (UTC) 
+Wed Oct 12 02:46:34 2022 +0000 (UTC) Command: '/usr/bin/ssh' 'thetagpu06-gpu0' '/usr/bin/cobalt-launcher.py' '--nf' '/var/tmp/cobalt.10109896' '--jobid' '10109896' '--cwd' '/lus/swift/home/hornerd/ai-science-training-series/04_modern_neural_networks' '--env' 'COBALT_JOBID=10109896' '/lus/swift/home/hornerd/ai-science-training-series/04_modern_neural_networks/./train_resnet34_thetagpu_DAH.sh'
+Wed Oct 12 02:46:34 2022 +0000 (UTC) 
+Wed Oct 12 02:46:34 2022 +0000 (UTC) Environment:
+Wed Oct 12 02:46:34 2022 +0000 (UTC) SHELL=/bin/bash
+Wed Oct 12 02:46:34 2022 +0000 (UTC) COBALT_NODEFILE=/tmp/tmpk1X0mg
+Wed Oct 12 02:46:34 2022 +0000 (UTC) COBALT_PARTNAME=thetagpu06-gpu0
+Wed Oct 12 02:46:34 2022 +0000 (UTC) COBALT_JOBID=10109896
+Wed Oct 12 02:46:34 2022 +0000 (UTC) COBALT_STARTTIME=1665542781
+Wed Oct 12 02:46:34 2022 +0000 (UTC) LOGNAME=hornerd
+Wed Oct 12 02:46:34 2022 +0000 (UTC) USER=hornerd
+Wed Oct 12 02:46:34 2022 +0000 (UTC) COBALT_ENDTIME=1665546381
+Wed Oct 12 02:46:34 2022 +0000 (UTC) COBALT_PARTSIZE=1
+Wed Oct 12 02:46:34 2022 +0000 (UTC) HOME=/home/hornerd
+Wed Oct 12 02:46:34 2022 +0000 (UTC) COBALT_JOBSIZE=1
+Wed Oct 12 02:46:34 2022 +0000 (UTC) 
+Wed Oct 12 02:46:34 2022 +0000 (UTC) Info: stdin received from /dev/null
+Wed Oct 12 02:46:34 2022 +0000 (UTC) Info: stdout sent to /lus/swift/home/hornerd/ai-science-training-series/04_modern_neural_networks/10109896.output
+Wed Oct 12 02:46:34 2022 +0000 (UTC) Info: stderr sent to /lus/swift/home/hornerd/ai-science-training-series/04_modern_neural_networks/10109896.error
+Wed Oct 12 02:46:34 2022 +0000 (UTC) 
+Wed Oct 12 03:46:35 2022 +0000 (UTC) Info: maximum execution time exceeded; initiating job termination
