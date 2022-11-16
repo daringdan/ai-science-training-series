@@ -28,7 +28,7 @@ Then once the interactive session started on the compute node:
     (2022-07-01//base) hornerd@thetagpu05:~/ai-science-training-series/07_largeScaleTraining/src/ai4sci$ export BS=512; ./main.sh "batch_size=${BS}" > "main-bs-${BS}.log" 2>&1 &
 
 
-This produced the [`main-bs-512.log`](../07_largeScaleTraining/src/ai4sci07_largeScaleTraining/src/ai4sci/main-bs-512.log) log file.
+This produced the [`main-bs-512.log`](../07_largeScaleTraining/src/ai4sci/main-bs-512.log) log file.
 
 Below, I have also included the log file listing below.
 
