@@ -139,14 +139,14 @@ for ep in range(args.epochs):
     for batch, (images, labels) in enumerate(dataset.take(nstep)):
         loss_value, acc = training_step(images, labels)
         # 8. Average the metrics across all the workers        
-#        loss_value = hvd.allreduce(loss_value, average=True)
-#        acc = hvd.allreduce(acc, average=True)
+        loss_value = hvd.allreduce(loss_value, average=True)
+        acc = hvd.allreduce(acc, average=True)
 
-        training_loss += loss_value/nstep
-        training_acc += acc/nstep
+        training_loss = loss_value
+        training_acc = acc
         
         # 6. Broadcast the model from rank 0
-        if ((nstep == 0) & (ep == 0) & (hvd.rank() == 0)):
+        if ((nstep == 0) & (ep == 0)):
             hvd.broadcast_variables(mnist_model.variables, root_rank=0)
             hvd.broadcast_variables(opt.variables(), root_rank=0)
 
@@ -156,10 +156,10 @@ for ep in range(args.epochs):
             print('Epoch - %d, step #%06d/%06d\tLoss: %.6f' % (ep, batch, nstep, loss_value))
 
         # 8. Average the metrics across all the workers                                                                                                                                                                                                                      
-        total_loss = hvd.allreduce(training_loss, average=True)
-        total_acc = hvd.allreduce(training_acc, average=True)
-        training_loss = total_loss
-        training_acc = total_acc
+#        total_loss = hvd.allreduce(training_loss, average=True)
+#        total_acc = hvd.allreduce(training_acc, average=True)
+#        training_loss = total_loss
+#        training_acc = total_acc
         
             
     # Testing
