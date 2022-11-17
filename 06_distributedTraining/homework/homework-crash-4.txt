@@ -1,0 +1,81 @@
+(2022-07-01//base) hornerd@thetagpu14:~/ai-science-training-series/06_distributedTraining/homework$ mpirun -np 4 python3 ./tensorflow2_mnist_hvd.py
+# I am rank 0 of 4
+# I am rank 2 of 4
+# I am rank 1 of 4
+# I am rank 3 of 4
+Traceback (most recent call last):
+  File "./tensorflow2_mnist_hvd.py", line 139, in <module>
+    loss_value, acc = training_step(images, labels)
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/tensorflow/python/util/traceback_utils.py", line 153, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/tensorflow/python/eager/execute.py", line 54, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+tensorflow.python.framework.errors_impl.UnknownError: Graph execution error:
+
+Detected at node 'DistributedGradientTape_Allreduce/cond_7/HorovodAllreduce_gradient_tape_sequential_dense_1_BiasAdd_BiasAddGrad_0' defined at (most recent call last):
+    File "./tensorflow2_mnist_hvd.py", line 139, in <module>
+      loss_value, acc = training_step(images, labels)
+    File "./tensorflow2_mnist_hvd.py", line 111, in training_step
+      grads = tape.gradient(loss_value, mnist_model.trainable_variables)
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 814, in gradient
+      return self._allreduce_grads(gradients, sources)
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 416, in allreduce_grads
+      if groups is not None:
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 457, in allreduce_grads
+      op=op,
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 457, in allreduce_grads
+      op=op,
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 457, in allreduce_grads
+      op=op,
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 297, in _allreduce_cond
+      tf.convert_to_tensor(process_set.included() and process_set.size() > 1)),
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 288, in allreduce_fn
+      return allreduce(tensor, *args, process_set=process_set, **kwargs)
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 95, in allreduce
+      if isinstance(tensor, tf.IndexedSlices):
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 125, in allreduce
+      summed_tensor_compressed = _allreduce(tensor_compressed, op=op,
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/mpi_ops.py", line 127, in _allreduce
+      return MPI_LIB.horovod_allreduce(tensor, name=name, reduce_op=op,
+    File "<string>", line 107, in horovod_allreduce
+Node: 'DistributedGradientTape_Allreduce/cond_7/HorovodAllreduce_gradient_tape_sequential_dense_1_BiasAdd_BiasAddGrad_0'
+ncclAllReduce failed: unhandled cuda error
+	 [[{{node DistributedGradientTape_Allreduce/cond_7/HorovodAllreduce_gradient_tape_sequential_dense_1_BiasAdd_BiasAddGrad_0}}]] [Op:__inference_training_step_50906]
+Traceback (most recent call last):
+  File "./tensorflow2_mnist_hvd.py", line 139, in <module>
+    loss_value, acc = training_step(images, labels)
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/tensorflow/python/util/traceback_utils.py", line 153, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/tensorflow/python/eager/execute.py", line 54, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+tensorflow.python.framework.errors_impl.UnknownError: Graph execution error:
+
+Detected at node 'DistributedGradientTape_Allreduce/cond_7/HorovodAllreduce_gradient_tape_sequential_dense_1_BiasAdd_BiasAddGrad_0' defined at (most recent call last):
+    File "./tensorflow2_mnist_hvd.py", line 139, in <module>
+      loss_value, acc = training_step(images, labels)
+    File "./tensorflow2_mnist_hvd.py", line 111, in training_step
+      grads = tape.gradient(loss_value, mnist_model.trainable_variables)
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 814, in gradient
+      return self._allreduce_grads(gradients, sources)
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 416, in allreduce_grads
+      if groups is not None:
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 457, in allreduce_grads
+      op=op,
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 457, in allreduce_grads
+      op=op,
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 457, in allreduce_grads
+      op=op,
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 297, in _allreduce_cond
+      tf.convert_to_tensor(process_set.included() and process_set.size() > 1)),
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 288, in allreduce_fn
+      return allreduce(tensor, *args, process_set=process_set, **kwargs)
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 95, in allreduce
+      if isinstance(tensor, tf.IndexedSlices):
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/__init__.py", line 125, in allreduce
+      summed_tensor_compressed = _allreduce(tensor_compressed, op=op,
+    File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/horovod/tensorflow/mpi_ops.py", line 127, in _allreduce
+      return MPI_LIB.horovod_allreduce(tensor, name=name, reduce_op=op,
+    File "<string>", line 107, in horovod_allreduce
+Node: 'DistributedGradientTape_Allreduce/cond_7/HorovodAllreduce_gradient_tape_sequential_dense_1_BiasAdd_BiasAddGrad_0'
+ncclAllReduce failed: unhandled cuda error
+	 [[{{node DistributedGradientTape_Allreduce/cond_7/HorovodAllreduce_gradient_tape_sequential_dense_1_BiasAdd_BiasAddGrad_0}}]] [Op:__inference_training_step_50906]

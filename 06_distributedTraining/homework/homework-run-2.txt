@@ -1,0 +1,68 @@
+(2022-07-01//base) hornerd@thetagpu14:~/ai-science-training-series/06_distributedTraining/homework$ mpirun -np 2 python3 ./tensorflow2_mnist_hvd.py
+# I am rank 0 of 2
+# I am rank 1 of 2
+Epoch - 0, step #000000/000117	Loss: 2.296051
+Epoch - 0, step #000100/000117	Loss: 2.300153
+E[0], train Loss: 2.307225, training Acc: 0.096, val loss: 2.302, val Acc: 0.113	 Time: 7.217 seconds
+Total training time: 7.261358976364136 seconds
+Epoch - 1, step #000000/000117	Loss: 2.308036
+Epoch - 1, step #000100/000117	Loss: 2.303483
+E[1], train Loss: 2.301991, training Acc: 0.104, val loss: 2.301, val Acc: 0.113	 Time: 1.519 seconds
+Total training time: 8.815795421600342 seconds
+Epoch - 2, step #000000/000117	Loss: 2.297210
+Epoch - 2, step #000100/000117	Loss: 2.299618
+E[2], train Loss: 2.303309, training Acc: 0.117, val loss: 2.301, val Acc: 0.113	 Time: 2.527 seconds
+Total training time: 11.385281801223755 seconds
+Epoch - 3, step #000000/000117	Loss: 2.303014
+Epoch - 3, step #000100/000117	Loss: 2.299066
+E[3], train Loss: 2.300798, training Acc: 0.109, val loss: 2.301, val Acc: 0.113	 Time: 1.462 seconds
+Total training time: 12.882826566696167 seconds
+Epoch - 4, step #000000/000117	Loss: 2.298771
+Epoch - 4, step #000100/000117	Loss: 2.302664
+E[4], train Loss: 2.299699, training Acc: 0.131, val loss: 2.301, val Acc: 0.113	 Time: 2.675 seconds
+Total training time: 15.593750715255737 seconds
+Epoch - 5, step #000000/000117	Loss: 2.302911
+Epoch - 5, step #000100/000117	Loss: 2.304020
+E[5], train Loss: 2.300691, training Acc: 0.104, val loss: 2.302, val Acc: 0.113	 Time: 1.555 seconds
+Total training time: 17.19308590888977 seconds
+Epoch - 6, step #000000/000117	Loss: 2.304946
+Epoch - 6, step #000100/000117	Loss: 2.298415
+E[6], train Loss: 2.302023, training Acc: 0.107, val loss: 2.302, val Acc: 0.113	 Time: 1.515 seconds
+Total training time: 18.743945360183716 seconds
+Epoch - 7, step #000000/000117	Loss: 2.299689
+Epoch - 7, step #000100/000117	Loss: 2.299536
+E[7], train Loss: 2.300873, training Acc: 0.092, val loss: 2.302, val Acc: 0.113	 Time: 2.742 seconds
+Total training time: 21.522863388061523 seconds
+Epoch - 8, step #000000/000117	Loss: 2.299542
+Epoch - 8, step #000100/000117	Loss: 2.300047
+E[8], train Loss: 2.298790, training Acc: 0.119, val loss: 2.302, val Acc: 0.113	 Time: 1.470 seconds
+Total training time: 23.029622316360474 seconds
+Epoch - 9, step #000000/000117	Loss: 2.300917
+Epoch - 9, step #000100/000117	Loss: 2.307512
+E[9], train Loss: 2.298255, training Acc: 0.121, val loss: 2.301, val Acc: 0.113	 Time: 2.736 seconds
+Total training time: 25.80091881752014 seconds
+Epoch - 10, step #000000/000117	Loss: 2.300184
+Epoch - 10, step #000100/000117	Loss: 2.295502
+E[10], train Loss: 2.305942, training Acc: 0.090, val loss: 2.301, val Acc: 0.113	 Time: 1.267 seconds
+Total training time: 27.10426688194275 seconds
+Epoch - 11, step #000000/000117	Loss: 2.301610
+Epoch - 11, step #000100/000117	Loss: 2.299459
+E[11], train Loss: 2.309989, training Acc: 0.094, val loss: 2.302, val Acc: 0.113	 Time: 1.919 seconds
+Total training time: 29.06314182281494 seconds
+Epoch - 12, step #000000/000117	Loss: 2.295758
+Epoch - 12, step #000100/000117	Loss: 2.302950
+E[12], train Loss: 2.305767, training Acc: 0.109, val loss: 2.302, val Acc: 0.113	 Time: 1.498 seconds
+Total training time: 30.59687328338623 seconds
+Epoch - 13, step #000000/000117	Loss: 2.295609
+Epoch - 13, step #000100/000117	Loss: 2.299226
+E[13], train Loss: 2.301749, training Acc: 0.113, val loss: 2.302, val Acc: 0.113	 Time: 2.846 seconds
+Total training time: 33.48543691635132 seconds
+Epoch - 14, step #000000/000117	Loss: 2.301480
+Epoch - 14, step #000100/000117	Loss: 2.306604
+E[14], train Loss: 2.303437, training Acc: 0.107, val loss: 2.302, val Acc: 0.113	 Time: 1.524 seconds
+Total training time: 35.04581618309021 seconds
+Epoch - 15, step #000000/000117	Loss: 2.301074
+Epoch - 15, step #000100/000117	Loss: 2.301719
+E[15], train Loss: 2.299935, training Acc: 0.082, val loss: 2.302, val Acc: 0.103	 Time: 2.343 seconds
+Total training time: 37.425490379333496 seconds
+(2022-07-01//base) hornerd@thetagpu14:~/ai-science-training-series/06_distributedTraining/homework$ 
