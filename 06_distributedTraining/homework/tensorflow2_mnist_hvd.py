@@ -105,7 +105,6 @@ def training_step(images, labels):
         pred = tf.math.argmax(probs, axis=1)
         equality = tf.math.equal(pred, labels)
         accuracy = tf.math.reduce_mean(tf.cast(equality, tf.float32))
-
     # 5. Wrap tf.GradientTape with Horovod Distributed Gradient Tape
     tape = hvd.DistributedGradientTape(tape)
     
@@ -138,6 +137,7 @@ for ep in range(args.epochs):
     tt0 = time.time()
     for batch, (images, labels) in enumerate(dataset.take(nstep)):
         loss_value, acc = training_step(images, labels)
+
         # 8. Average the metrics across all the workers        
         loss_value = hvd.allreduce(loss_value, average=True)
         acc = hvd.allreduce(acc, average=True)
@@ -155,13 +155,7 @@ for ep in range(args.epochs):
             checkpoint.save(checkpoint_dir)
             print('Epoch - %d, step #%06d/%06d\tLoss: %.6f' % (ep, batch, nstep, loss_value))
 
-        # 8. Average the metrics across all the workers                                                                                                                                                                                                                      
-#        total_loss = hvd.allreduce(training_loss, average=True)
-#        total_acc = hvd.allreduce(training_acc, average=True)
-#        training_loss = total_loss
-#        training_acc = total_acc
-        
-            
+                    
     # Testing
     test_acc = 0.0
     test_loss = 0.0
@@ -171,14 +165,15 @@ for ep in range(args.epochs):
         test_loss += loss_value/ntest_step
     tt1 = time.time()
 
-
-    print('E[%d], train Loss: %.6f, training Acc: %.3f, val loss: %.3f, val Acc: %.3f\t Time: %.3f seconds' % (ep, training_loss, training_acc, test_loss, test_acc, tt1 - tt0))
-    metrics['train_acc'].append(training_acc.numpy())
-    metrics['train_loss'].append(training_loss.numpy())
-    metrics['valid_acc'].append(test_acc.numpy())
-    metrics['valid_loss'].append(test_loss.numpy())
-    metrics['time_per_epochs'].append(tt1 - tt0) 
-checkpoint.save(checkpoint_dir)
-np.savetxt("metrics.dat", np.array([metrics['train_acc'], metrics['train_loss'], metrics['valid_acc'], metrics['valid_loss'], metrics['time_per_epochs']]).transpose())
-t1 = time.time()
-print("Total training time: %s seconds" %(t1 - t0))
+    if (hvd.rank()==0):
+        print('E[%d], train Loss: %.6f, training Acc: %.3f, val loss: %.3f, val Acc: %.3f\t Time: %.3f seconds' % (ep, training_loss, training_acc, test_loss, test_acc, tt1 - tt0))
+        metrics['train_acc'].append(training_acc.numpy())
+        metrics['train_loss'].append(training_loss.numpy())
+        metrics['valid_acc'].append(test_acc.numpy())
+        metrics['valid_loss'].append(test_loss.numpy())
+        metrics['time_per_epochs'].append(tt1 - tt0) 
+        checkpoint.save(checkpoint_dir)
+        np.savetxt("metrics.dat", np.array([metrics['train_acc'], metrics['train_loss'], metrics['valid_acc'], metrics['valid_loss'], metrics['time_per_epochs']]).transpose())
+        t1 = time.time()
+        
+        print("Total training time: %s seconds" %(t1 - t0))
